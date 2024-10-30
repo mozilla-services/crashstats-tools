@@ -42,7 +42,6 @@ supersearchfacet = "crashstats_tools.cmd_supersearchfacet:supersearchfacet"
 [project.optional-dependencies]
 dev = [
     "build",
-    "check-manifest",
     "cogapp",
     "freezegun",
     "pytest",
@@ -57,7 +56,7 @@ dev = [
 
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 
