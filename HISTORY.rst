@@ -2,13 +2,20 @@
 History
 =======
 
-2.1.0 (in development)
-======================
+2.1.0 (October 30th, 2024)
+==========================
 
 Changes:
 
-* Transfered repository from willkg to mozilla-services.
+* Transfer repository from willkg to mozilla-services.
 * Drop support for Python 3.8. (#158)
+* Add support for Python 3.13. (#152)
+* Support ``_return_query`` in supersearch and supersearchfacet. (#140)
+* Fix start-date and end-date handling in supersearchfacet. (#136)
+* Handle non-JSON error responses correctly. (#139)
+* Add download stats and estimate to fetch-data. (#149)
+* Add documentation for default data window in supersearch docs. (#147)
+* Support ``.env`` files for ``CRASHSTATS_API_TOKEN`` for all commands. (#154)
 
 
 2.0.0 (April 12th, 2024)
