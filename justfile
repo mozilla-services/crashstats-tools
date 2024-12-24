@@ -6,8 +6,8 @@ devenv:
     uv sync --extra dev --refresh --upgrade
 
 # Run tests and linting
-test: devenv
-    tox
+test *args: devenv
+    tox {{args}}
 
 # Format files
 format: devenv
@@ -25,7 +25,7 @@ clean:
     find src tests/ -name '*.pyc' | xargs rm -rf
 
 # Update README with fresh cog output
-docs:
+docs: devenv
     uv run python -m cogapp -r README.rst
 
 # Build files for relase
