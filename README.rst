@@ -3,30 +3,28 @@ crashstats-tools
 ================
 
 Command line tools and library for interacting with Crash Stats
-(`<https://crash-stats.mozilla.org/>`_).
+(`<https://crash-stats.mozilla.org/>`__).
 
-:Code: https://github.com/mozilla-services/crashstats-tools
+:Code: `<https://github.com/mozilla-services/crashstats-tools>`__
 :Documentation: Check the ``README.rst`` file
 :Changelog: Check the ``HISTORY.rst`` file
-:Issue tracker: https://github.com/mozilla-services/crashstats-tools/issues
+:Issue tracker: `<https://github.com/mozilla-services/crashstats-tools/issues>`__
 :License: MPLv2
 :Chat: `#crashreporting matrix channel <https://chat.mozilla.org/#/room/#crashreporting:mozilla.org>`__
-:Community Participation Guidelines: `<https://github.com/mozilla-services/crashstats-tools/blob/main/CODE_OF_CONDUCT.md>`_
+:Community Participation Guidelines: `<https://github.com/mozilla-services/crashstats-tools/blob/main/CODE_OF_CONDUCT.md>`__
 
 
 Installing
 ==========
 
-crashstats-tools is available on `PyPI <https://pypi.org>`_. You can install it
-with `pipx <https://pipxproject.github.io/pipx/>`_::
+crashstats-tools is available on `PyPI <https://pypi.org>`__. You can install it
+with `uv <https://docs.astral.sh/uv/>`__::
+
+    $ uv tool install crashstats-tools
+
+or with pipx::
 
     $ pipx install crashstats-tools
-
-
-For developing crashstats-tools, clone the Git repository, create a virtual
-environment, and install crashstats-tools and dev dependencies with::
-
-    $ pip install -e '.[dev]'
 
 
 Tools
@@ -125,7 +123,8 @@ supersearch
    Options:
      --host TEXT                     host for system to fetch crashids from
                                      [default: https://crash-stats.mozilla.org]
-     --supersearch-url TEXT          Super Search url to base query on
+     --supersearch-url TEXT          Super Search url to base query on  [default:
+                                     ""]
      --num TEXT                      number of crash ids you want or "all" for all
                                      of them  [default: 100]
      --headers / --no-headers        whether or not to show table headers
@@ -179,8 +178,8 @@ the ``supersearchfacet`` command for that.
 
 See Super Search API documentation for details on notation and fields:
 
-* https://crash-stats.mozilla.org/documentation/supersearch/
-* https://crash-stats.mozilla.org/documentation/supersearch/api/
+* `<https://crash-stats.mozilla.org/documentation/supersearch/>`__
+* `<https://crash-stats.mozilla.org/documentation/supersearch/api/>`__
 
 
 supersearchfacet
@@ -279,10 +278,11 @@ supersearchfacet
    Options:
      --host TEXT                     host for system to fetch facets from
                                      [default: https://crash-stats.mozilla.org]
-     --supersearch-url TEXT          Super Search url to base query on
+     --supersearch-url TEXT          Super Search url to base query on  [default:
+                                     ""]
      --start-date TEXT               start date for range; 'YYYY-MM-DD' and 'YYYY-
                                      MM-DD HH:MM:SS' formats; defaults to 00:00:00
-                                     when no time specified
+                                     when no time specified  [default: ""]
      --end-date TEXT                 end date for range; 'YYYY-MM-DD' and 'YYYY-MM-
                                      DD HH:MM:SS' formats; defaults to 23:59:59
                                      when no time specified  [default: today]
@@ -338,8 +338,8 @@ Get the table in Markdown for easy cut-and-paste into Markdown things::
 
 See Super Search API documentation for details on notation and fields:
 
-* https://crash-stats.mozilla.org/documentation/supersearch/
-* https://crash-stats.mozilla.org/documentation/supersearch/api/
+* `<https://crash-stats.mozilla.org/documentation/supersearch/>`__
+* `<https://crash-stats.mozilla.org/documentation/supersearch/api/>`__
 
 
 fetch-data
@@ -454,7 +454,7 @@ reprocess
      --sleep INTEGER                 how long in seconds to sleep before submitting
                                      the next group  [default: 1]
      --ruleset TEXT                  processor pipeline ruleset to use for
-                                     reprocessing these crash ids
+                                     reprocessing these crash ids  [default: ""]
      --allow-many / --no-allow-many  don't prompt user about letting us know about
                                      reprocessing more than 10,000 crashes
                                      [default: no-allow-many]
@@ -502,7 +502,7 @@ You need an API token for ``reprocess``--it doesn't work without one.
 
 If you have access, you can generate an API token here:
 
-https://crash-stats.mozilla.org/api/tokens/
+`<https://crash-stats.mozilla.org/api/tokens/>`__
 
 Once you have acquired one, set the ``CRASHSTATS_API_TOKEN`` environment
 variable when using crashstats-tools commands.
@@ -510,7 +510,7 @@ variable when using crashstats-tools commands.
 Remember to abide by the data access policy when using data from Crash Stats!
 The policy is specified here:
 
-https://crash-stats.mozilla.org/documentation/memory_dump_access/
+`<https://crash-stats.mozilla.org/documentation/memory_dump_access/>`__
 
 
 Use cases
@@ -624,15 +624,29 @@ Further, this provides a library interface to some Crash Stats API endpoints:
     Performs a super search and returns facet data
 
 
+For development
+===============
+
+Requirements:
+
+* `just <https://just.systems/>`__
+* `uv <https://docs.astral.sh/uv/>`__
+
+For developing crashstats-tools, clone the Git repository, create a virtual
+environment, and install crashstats-tools and dev dependencies with::
+
+    $ just devenv
+
+
 Prior art and related projects
 ==============================
 
-https://github.com/mozilla/libmozdata
+`<https://github.com/mozilla/libmozdata>`__
     Python library which has a ``Supersearch`` class for performing queries and
     a ``ProcessedCrash`` class for fetching processed crash data.
 
-https://github.com/mozilla-services/socorro
+`<https://github.com/mozilla-services/socorro>`__
     Socorro (the code base for Crash Stats) has a Docker-based local dev
     environment which includes a series of commands for manipulating data.
 
-    https://socorro.readthedocs.io/en/latest/service/processor.html#processing-crashes
+    `<https://socorro.readthedocs.io/en/latest/service/processor.html#processing-crashes>`__
