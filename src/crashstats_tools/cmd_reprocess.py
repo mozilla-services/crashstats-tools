@@ -70,8 +70,11 @@ def reprocess(ctx, host, sleep, ruleset, allow_many, color, dotenv, crashids):
     """
     Sends specified crashes for reprocessing
 
-    This requires CRASHSTATS_API_TOKEN to be set in the environment to a valid
-    API token.
+    This requries an API token with "Reprocess Crashes" permission in order to
+    reprocess crash reports. Set the CRASHSTATS_API_TOKEN environment variable
+    to your API token value:
+
+    CRASHSTATS_API_TOKEN=xyz reprocess ...
 
     To create an API token for Crash Stats, visit:
 
@@ -82,8 +85,8 @@ def reprocess(ctx, host, sleep, ruleset, allow_many, color, dotenv, crashids):
     rate of crash ids being processed. For example, you could use "--sleep 10"
     which will sleep for 10 seconds between submitting groups of crashes.
 
-    Also, if you're processing a lot of crashes, you should let us know before
-    you do it.
+    Also, if you're processing a lot of crashes, please let us know before you
+    do it.
     """
     if dotenv:
         load_dotenv()

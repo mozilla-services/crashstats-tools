@@ -105,9 +105,10 @@ supersearch
 
      https://crash-stats.mozilla.org/documentation/supersearch/api/
 
-     This requires an API token in order to search and get results for protected
-     data fields. Using an API token also reduces rate-limiting. Set the
-     CRASHSTATS_API_TOKEN environment variable to your API token value:
+     This requires an API token with "View Personal Identifiable Information"
+     permission in order to search and get results for protected data fields. Using
+     an API token also reduces rate-limiting. Set the CRASHSTATS_API_TOKEN
+     environment variable to your API token value:
 
      CRASHSTATS_API_TOKEN=xyz supersearch ...
 
@@ -260,9 +261,10 @@ supersearchfacet
 
      https://crash-stats.mozilla.org/documentation/supersearch/api/
 
-     This requires an API token in order to search and get results for protected
-     data fields. Using an API token also reduces rate-limiting. Set the
-     CRASHSTATS_API_TOKEN environment variable to your API token value:
+     This requires an API token with "View Personal Identifiable Information"
+     permission in order to search and get results for protected data fields. Using
+     an API token also reduces rate-limiting. Set the CRASHSTATS_API_TOKEN
+     environment variable to your API token value:
 
      CRASHSTATS_API_TOKEN=xyz supersearchfacet ...
 
@@ -364,9 +366,10 @@ fetch-data
 
      https://antenna.readthedocs.io/en/latest/overview.html#aws-s3-file-hierarchy
 
-     This requires an API token in order to download dumps and protected data.
-     Using an API token also reduces rate-limiting. Set the CRASHSTATS_API_TOKEN
-     environment variable to your API token value:
+     This requires an API token with "View Personal Identifiable Information" and
+     "View Raw Dumps" permissions in order to download protected data and dumps.
+     data. Using an API token also reduces rate-limiting. Set the
+     CRASHSTATS_API_TOKEN environment variable to your API token value:
 
      CRASHSTATS_API_TOKEN=xyz fetch-data crashdata ...
 
@@ -433,8 +436,11 @@ reprocess
 
      Sends specified crashes for reprocessing
 
-     This requires CRASHSTATS_API_TOKEN to be set in the environment to a valid API
-     token.
+     This requries an API token with "Reprocess Crashes" permission in order to
+     reprocess crash reports. Set the CRASHSTATS_API_TOKEN environment variable to
+     your API token value:
+
+     CRASHSTATS_API_TOKEN=xyz reprocess ...
 
      To create an API token for Crash Stats, visit:
 
@@ -445,8 +451,8 @@ reprocess
      rate of crash ids being processed. For example, you could use "--sleep 10"
      which will sleep for 10 seconds between submitting groups of crashes.
 
-     Also, if you're processing a lot of crashes, you should let us know before you
-     do it.
+     Also, if you're processing a lot of crashes, please let us know before you do
+     it.
 
    Options:
      --host TEXT                     host for system to reprocess in  [default:

@@ -212,9 +212,10 @@ def fetch_data(
 
     https://antenna.readthedocs.io/en/latest/overview.html#aws-s3-file-hierarchy
 
-    This requires an API token in order to download dumps and protected data.
-    Using an API token also reduces rate-limiting. Set the CRASHSTATS_API_TOKEN
-    environment variable to your API token value:
+    This requires an API token with "View Personal Identifiable Information"
+    and "View Raw Dumps" permissions in order to download protected data and
+    dumps. data. Using an API token also reduces rate-limiting. Set the
+    CRASHSTATS_API_TOKEN environment variable to your API token value:
 
     CRASHSTATS_API_TOKEN=xyz fetch-data crashdata ...
 

@@ -157,9 +157,10 @@ def supersearch_cli(
 
     https://crash-stats.mozilla.org/documentation/supersearch/api/
 
-    This requires an API token in order to search and get results for protected
-    data fields. Using an API token also reduces rate-limiting. Set the
-    CRASHSTATS_API_TOKEN environment variable to your API token value:
+    This requires an API token with "View Personal Identifiable Information"
+    permission in order to search and get results for protected data fields.
+    Using an API token also reduces rate-limiting. Set the CRASHSTATS_API_TOKEN
+    environment variable to your API token value:
 
     CRASHSTATS_API_TOKEN=xyz supersearch ...
 
