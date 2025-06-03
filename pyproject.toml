@@ -8,7 +8,8 @@ authors = [{name = "Will Kahn-Greene"}]
 license = {text = "MPLv2"}
 requires-python = ">=3.9"
 dependencies = [
-    "click",
+    # TODO(smarnach): Remove once we drop support for Python 3.9.
+    "click<8.2.0",
     "more_itertools",
     "python-dotenv",
     "requests",
