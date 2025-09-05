@@ -168,6 +168,12 @@ Fetch 57 crash ids that match a Super Search query::
 
 Use single quotes for values so that your shell doesn't do any shell expansion.
 
+Fetch crash ids that contain annotations in the raw crash report that may not be present in the processed crash report:
+
+$ supersearch --crash_report_keys=Marionette
+
+This is helpful when a new annotation has been added in Firefox (and is showing up in raw crash reports) but is not yet searchable in Crash Stats (which largely looks at processed crash reports).
+
 Fetch uuid, product, version, and build_id for crash reports that have "OOM" in
 the signature::
 
