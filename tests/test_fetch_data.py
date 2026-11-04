@@ -2,16 +2,60 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
+import os
 import pathlib
 from textwrap import dedent
+from threading import Barrier
 
 from click.testing import CliRunner
+import pytest
 import responses
 
 from crashstats_tools import cmd_fetch_data
 from crashstats_tools.utils import DEFAULT_HOST
+
+
+def test_create_dir_if_needed_with_concurrent_workers(tmp_path, monkeypatch):
+    directory = tmp_path / "crashes"
+    exists = os.path.exists
+    barrier = Barrier(2)
+
+    def synchronized_exists(path):
+        result = exists(path)
+        if path == directory:
+            barrier.wait(timeout=5)
+        return result
+
+    with monkeypatch.context() as patch:
+        patch.setattr(cmd_fetch_data.os.path, "exists", synchronized_exists)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            list(pool.map(cmd_fetch_data.create_dir_if_needed, [directory, directory]))
+
+    assert directory.is_dir()
+
+
+def test_create_dir_if_needed_with_existing_directory(tmp_path):
+    cmd_fetch_data.create_dir_if_needed(tmp_path)
+    assert tmp_path.is_dir()
+
+
+def test_create_dir_if_needed_with_existing_file(tmp_path):
+    existing_file = tmp_path / "file"
+    existing_file.write_text("unchanged", encoding="utf-8")
+    cmd_fetch_data.create_dir_if_needed(existing_file)
+    assert existing_file.read_text(encoding="utf-8") == "unchanged"
+
+
+def test_create_dir_if_needed_propagates_errors(tmp_path, monkeypatch):
+    def fail_to_create(path, *args, **kwargs):
+        raise PermissionError("access denied")
+
+    monkeypatch.setattr(cmd_fetch_data.os, "makedirs", fail_to_create)
+    with pytest.raises(PermissionError, match="access denied"):
+        cmd_fetch_data.create_dir_if_needed(tmp_path / "denied")
 
 
 @responses.activate

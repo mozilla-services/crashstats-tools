@@ -28,7 +28,7 @@ from crashstats_tools.utils import (
 
 def create_dir_if_needed(d):
     if not os.path.exists(d):
-        os.makedirs(d)
+        os.makedirs(d, exist_ok=True)
 
 
 def fetch_crash(
